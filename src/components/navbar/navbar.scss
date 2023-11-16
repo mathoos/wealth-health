@@ -1,0 +1,34 @@
+.navbar{
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    padding : 2vh 5vw;
+    width : 100%;
+    border-bottom : 1px solid #5e6f21;
+
+    &_logo{
+        display : flex;
+        align-items: center;
+        gap : 2vw;
+
+        &-img{
+            width : 4vw;
+            height : auto;
+        }
+
+        h1{
+            color : #5e6f21;
+        }
+    }
+
+    &_link{
+        font-size : 1.1vw;
+        font-weight : bold;
+        color : #5e6f21;
+        transition : .3s ease;
+
+        &:hover{
+            color : #98ac3a;
+        }
+    }
+}

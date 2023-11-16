@@ -1,8 +1,22 @@
-import React from 'react';
+import React from 'react'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-import states from '../../Data/States.js'
+import Navbar from "../../components/navbar/Navbar.js";
+import Select from "../../components/select/Select.js";
+import DatePicker from "../../components/datePicker/DatePicker.js";
+import Lien from "../../components/Lien.js";
+
+import Modal from 'wealth-health-modal-lib';
+import 'wealth-health-modal-lib/dist/index.css';
+import '../../components/modal/modal.scss'; 
+
+import states from '../../Data/States.js';
+import departments from '../../Data/Departments.js';
+
+
+import './home.scss'; 
+
+
 
 
 function Home() {
@@ -13,10 +27,10 @@ function Home() {
         lastName: '',
         dateOfBirth: '',
         startDate: '',
-        department: '',
+        department: 'Sales',
         street: '',
         city: '',
-        state: '',
+        state: 'Alabama',
         zipCode: ''
     });
 
@@ -34,15 +48,15 @@ function Home() {
     };
 
     const saveEmployee = (event) => {
-
         event.preventDefault();
-
+     
         const employees = JSON.parse(localStorage.getItem('employees')) || []; // On récupère la liste des employés à partir du localStorage   
         employees.push(employeeData); // On ajoute les données de l'employé actuel
         localStorage.setItem('employees', JSON.stringify(employees)); // Et on sauvegarde la liste mise à jour dans le localStorage
         clearEmployeeData(); // On appelle la fonction clearEmployeeData qui réinitialise les données du formulaire à 0
         setShowModal(true); // On affiche la modale
     };
+
 
     const clearEmployeeData = () => {   
         const emptyEmployeeData = Object.fromEntries( // On transforme les paires clé-valeur en un objet
@@ -55,64 +69,97 @@ function Home() {
     
 
     return (
-        <div className="container">
-            <h1>HRnet</h1>
-            <Link to={"/list"}>View Current Employees</Link>
-            <h2>Create Employee</h2>
-            <form className="formulaire" onSubmit={saveEmployee} id="create-employee">
-                <label htmlFor="first-name">First Name</label>
-                <input type="text" id="first-name" name="firstName" value={employeeData.firstName} onChange={handleInputChange} />
+        <div className="home">
+            <Navbar>
+                <Lien
+                    href="/List"
+                    txt="View current employee"
+                    customClass="navbar_link"
+                />
+            </Navbar>
+            <div className="home_container">
+                <h2>Create Employee</h2>
+                <form className="home_container-formulaire" onSubmit={saveEmployee} id="create-employee">
+                    <fieldset className="fieldset">
+                        <label htmlFor="first-name">First Name</label>
+                        <input type="text" id="first-name" name="firstName" value={employeeData.firstName} onChange={handleInputChange} />
+                    </fieldset>
 
-                <label htmlFor="last-name">Last Name</label>
-                <input type="text" id="last-name" name="lastName" value={employeeData.lastName} onChange={handleInputChange} />
+                    <fieldset className="fieldset">
+                        <label htmlFor="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="lastName" value={employeeData.lastName} onChange={handleInputChange} />
+                    </fieldset>
 
-                <label htmlFor="date-of-birth">Date of Birth</label>
-                <input type="date" id="date-of-birth" name="dateOfBirth" value={employeeData.dateOfBirth} onChange={handleInputChange} />
+                    <fieldset className="fieldset">
+                        <label htmlFor="date-of-birth">Date of Birth</label>
+                        <DatePicker
+                            name="dateOfBirth"
+                            id="date-of-birth"
+                            value={employeeData.dateOfBirth}
+                            onChange={handleInputChange}
+                        />
+                    </fieldset>
 
-                <label htmlFor="start-date">Start Date</label>
-                <input type="date" id="start-date" name="startDate" value={employeeData.startDate} onChange={handleInputChange} />
+                    <fieldset className="fieldset">
+                        <label htmlFor="start-date">Start Date</label>
+                        <DatePicker
+                            name="start-date"
+                            id="startDate"
+                            value={employeeData.startDate}
+                            onChange={handleInputChange}
+                        />
+                    </fieldset>
+                   
+                    <fieldset className="fieldset-adress">
+                        <legend>Address</legend>
 
-                <fieldset className="address">
-                    <legend>Address</legend>
+                        <fieldset className="fieldset">
+                            <label htmlFor="street">Street</label>
+                            <input type="text" id="street" name="street" value={employeeData.street} onChange={handleInputChange} />
+                        </fieldset>
 
-                    <label htmlFor="street">Street</label>
-                    <input type="text" id="street" name="street" value={employeeData.street} onChange={handleInputChange} />
+                        <fieldset className="fieldset">
+                            <label htmlFor="city">City</label>
+                            <input type="text" id="city" name="city" value={employeeData.city} onChange={handleInputChange} />
+                        </fieldset>
 
-                    <label htmlFor="city">City</label>
-                    <input type="text" id="city" name="city" value={employeeData.city} onChange={handleInputChange} />
+                        <fieldset className="fieldset">
+                            <label htmlFor="state">State</label>
+                            <Select
+                                name="state"
+                                id="state"
+                                value={employeeData.state}
+                                onChange={handleInputChange}
+                                options={states}
+                                customClass="select"
+                            />
+                        </fieldset>
 
-                    <label htmlFor="state">State</label>
-                    <select id="state" name="state" value={employeeData.state} onChange={handleInputChange}>
-                        <option value="">Select a state</option>
-                        {states.map((state, index) => (
-                            <option key={index} value={state.abbreviation}>
-                                {state.name}
-                            </option>
-                        ))}
-                    </select>
+                        <fieldset className="fieldset">
+                            <label htmlFor="zip-code">Zip Code</label>
+                            <input type="number" id="zip-code" name="zipCode" value={employeeData.zipCode} onChange={handleInputChange} />
+                        </fieldset>
+                    </fieldset>
 
-                    <label htmlFor="zip-code">Zip Code</label>
-                    <input type="number" id="zip-code" name="zipCode" value={employeeData.zipCode} onChange={handleInputChange} />
-                </fieldset>
-
-                <label htmlFor="department">Department</label>
-                <select name="department" id="department" value={employeeData.department} onChange={handleInputChange}>
-                    <option>Sales</option>
-                    <option>Marketing</option>
-                    <option>Engineering</option>
-                    <option>Human Resources</option>
-                    <option>Legal</option>
-                </select>
-
-                <button type="submit">Save</button>
-            </form>
-
-            {showModal && ( 
-                <div id="confirmation" className="modal">
-                    <div className="close" onClick={closeModal}>Close</div>
-                    <p>Employee Created!</p>
-                </div>
-            )}           
+                    <fieldset className="fieldset">
+                        <label htmlFor="department">Department</label>
+                        <Select
+                            name="department"
+                            id="department"
+                            value={employeeData.department}
+                            onChange={handleInputChange}
+                            options={departments}
+                            customClass="select"
+                        />
+                    </fieldset>
+                    <button type="submit">Save</button>
+                </form>
+            </div>         
+            <Modal
+                show={showModal} 
+                handleClose={closeModal} 
+                txt="Employee created" 
+            />
         </div>
     );
 }

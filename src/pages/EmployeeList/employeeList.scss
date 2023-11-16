@@ -1,0 +1,51 @@
+.employeeList{
+    width : 100%;
+    min-height : 100vh;
+
+    &_container{
+        display : flex;
+        flex-direction: column;
+        align-items: center;
+        gap : 5vh;
+        padding : 10vh 10vw;
+
+        h2{
+            text-align : center;
+        }
+
+        &-table{
+            width : 100%;
+            border :1px solid grey;       
+            
+            tbody{
+                tr{
+                    border-bottom : 1px solid grey;
+                    &:nth-child(odd){
+                        background-color: #f9f9f9;
+                    }
+                    &:first-child{
+                        border-top : 1px solid grey;
+                    }
+                    &:last-child{
+                        border-bottom : none;
+                    }
+                }
+            }
+            
+            tr{
+                display : flex;
+            }
+            
+            th, td{
+                width : 100%;
+                text-align : center;
+            }
+
+            tr{
+                padding : 1vw;
+            }
+        }
+    }    
+}
+
+

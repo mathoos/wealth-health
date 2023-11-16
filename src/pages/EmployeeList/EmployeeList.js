@@ -1,45 +1,39 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import Navbar from "../../components/navbar/Navbar.js";
+import Lien from "../../components/Lien.js";
+import Table from "../../components/table/Table";
+import './employeeList.scss'; 
 
 function EmployeeList() {
-   
 
     const employees = JSON.parse(localStorage.getItem('employees')) || [];
-    
+
+    const columns = [
+        { key: 'firstName', label: 'First Name' },
+        { key: 'lastName', label: 'Last Name' },
+        { key: 'startDate', label: 'Start Date' },
+        { key: 'department', label: 'Department' },
+        { key: 'dateOfBirth', label: 'Date of Birth' },
+        { key: 'street', label: 'Street' },
+        { key: 'city', label: 'City' },
+        { key: 'state', label: 'State' },
+        { key: 'zipCode', label: 'Zip Code' },
+    ];
+   
     return (
-        <div className="container">
-            <h1>Current Employees</h1>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Start Date</th>
-                        <th>Department</th>
-                        <th>Date of Birth</th>
-                        <th>Street</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Zip Code</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {employees.map((employee, index) => (
-                        <tr key={index}>
-                            <td>{employee.firstName}</td>
-                            <td>{employee.lastName}</td>
-                            <td>{employee.startDate}</td>
-                            <td>{employee.department}</td>
-                            <td>{employee.dateOfBirth}</td>
-                            <td>{employee.street}</td>
-                            <td>{employee.city}</td>
-                            <td>{employee.state}</td>
-                            <td>{employee.zipCode}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <Link to={"/"}>Home</Link>
+        <div className="employeeList">
+            <Navbar>
+                <Lien
+                    href="/"
+                    txt="Home"
+                    customClass="navbar_link"
+                />
+            </Navbar>
+            <div className="employeeList_container">
+                <h2>Current Employees</h2>
+                <Table columns={columns} data={employees}/> 
+            </div>   
         </div>
     );
 }
