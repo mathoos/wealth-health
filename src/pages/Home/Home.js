@@ -6,7 +6,7 @@ import Select from "../../components/select/Select.js";
 import DatePicker from "../../components/datePicker/DatePicker.js";
 import Lien from "../../components/Lien.js";
 
-import Modal from 'wealth-health-modal-lib';
+import Modal from 'wealth-health-modal-lib/dist/index.js';
 import 'wealth-health-modal-lib/dist/index.css';
 import '../../components/modal/modal.scss'; 
 
@@ -15,8 +15,6 @@ import departments from '../../Data/Departments.js';
 
 
 import './home.scss'; 
-
-
 
 
 function Home() {
@@ -33,13 +31,6 @@ function Home() {
         state: 'Alabama',
         zipCode: ''
     });
-
-    // On initialise l'état local de la modale à false
-    const [showModal, setShowModal] = useState(false);
-
-    const closeModal = () => {
-        setShowModal(false);
-    };
 
     // On met à jour les nouvelles valeurs de chaque champ onChange
     const handleInputChange = (e) => {
@@ -65,6 +56,13 @@ function Home() {
         );   
         setEmployeeData(emptyEmployeeData); // On met à jour l'état employeeData avec le nouvel objet emptyEmployeeData
     };
+
+    // On initialise l'état local de la modale à false
+    const [showModal, setShowModal] = useState(false);
+
+    const closeModal = () => {
+        setShowModal(false);
+    };    
 
     
 
@@ -103,8 +101,8 @@ function Home() {
                     <fieldset className="fieldset">
                         <label htmlFor="start-date">Start Date</label>
                         <DatePicker
-                            name="start-date"
-                            id="startDate"
+                            name="startDate"
+                            id="start-date"
                             value={employeeData.startDate}
                             onChange={handleInputChange}
                         />
@@ -158,7 +156,7 @@ function Home() {
             <Modal
                 show={showModal} 
                 handleClose={closeModal} 
-                txt="Employee created" 
+                txt={<span>Employee created !</span>} 
             />
         </div>
     );
