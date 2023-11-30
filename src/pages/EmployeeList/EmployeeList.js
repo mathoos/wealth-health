@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import Navbar from "../../components/navbar/Navbar.js";
 import Lien from "../../components/Lien.js";
@@ -7,7 +8,7 @@ import './employeeList.scss';
 
 function EmployeeList() {
 
-    const employees = JSON.parse(localStorage.getItem('employees')) || [];
+    const employees = useSelector((state) => state.employees);
 
     const columns = [
         { key: 'firstName', label: 'First Name' },

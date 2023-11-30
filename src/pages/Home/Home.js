@@ -1,6 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { addEmployee } from '../../utilities/Slice.js';
+
 import Navbar from "../../components/navbar/Navbar.js";
 import Select from "../../components/select/Select.js";
 import DatePicker from "../../components/datePicker/DatePicker.js";
@@ -8,7 +11,6 @@ import Lien from "../../components/Lien.js";
 
 import Modal from 'wealth-health-modal-lib/dist/index.js';
 import 'wealth-health-modal-lib/dist/index.css';
-import '../../components/modal/modal.scss'; 
 
 import states from '../../Data/States.js';
 import departments from '../../Data/Departments.js';
@@ -18,6 +20,8 @@ import './home.scss';
 
 
 function Home() {
+
+    const dispatch = useDispatch();
 
     // On initialise un état local qui stocke les données du nouvel employé
     const [employeeData, setEmployeeData] = useState({
@@ -40,14 +44,10 @@ function Home() {
 
     const saveEmployee = (event) => {
         event.preventDefault();
-     
-        const employees = JSON.parse(localStorage.getItem('employees')) || []; // On récupère la liste des employés à partir du localStorage   
-        employees.push(employeeData); // On ajoute les données de l'employé actuel
-        localStorage.setItem('employees', JSON.stringify(employees)); // Et on sauvegarde la liste mise à jour dans le localStorage
-        clearEmployeeData(); // On appelle la fonction clearEmployeeData qui réinitialise les données du formulaire à 0
-        setShowModal(true); // On affiche la modale
+        dispatch(addEmployee(employeeData));
+        clearEmployeeData();
+        setShowModal(true);
     };
-
 
     const clearEmployeeData = () => {   
         const emptyEmployeeData = Object.fromEntries( // On transforme les paires clé-valeur en un objet
@@ -63,7 +63,6 @@ function Home() {
     const closeModal = () => {
         setShowModal(false);
     };    
-
     
 
     return (
@@ -156,7 +155,7 @@ function Home() {
             <Modal
                 show={showModal} 
                 handleClose={closeModal} 
-                txt={<span>Employee created !</span>} 
+                content={<span>Employee created !</span>} 
             />
         </div>
     );
