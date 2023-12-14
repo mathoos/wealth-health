@@ -21,6 +21,7 @@ import './home.scss';
 
 function Home() {
 
+    // On récupère le hook useDispatch() de Redux pour obtenir la fonction dispatch 
     const dispatch = useDispatch();
 
     // On initialise un état local qui stocke les données du nouvel employé
@@ -44,7 +45,7 @@ function Home() {
 
     const saveEmployee = (event) => {
         event.preventDefault();
-        dispatch(addEmployee(employeeData));
+        dispatch(addEmployee(employeeData)); // On envoie une action Redux avec les données de l'employé
         clearEmployeeData();
         setShowModal(true);
     };

@@ -8,6 +8,7 @@ import './employeeList.scss';
 
 function EmployeeList() {
 
+    // Utilisation du hook useSelector pour extraire les données d'employés du Redux store :
     const employees = useSelector((state) => state.employees);
 
     const columns = [
