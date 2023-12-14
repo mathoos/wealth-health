@@ -4,7 +4,7 @@
     align-items: center;
     padding : 2vh 5vw;
     width : 100%;
-    border-bottom : 1px solid #5e6f21;
+    border-bottom : 2px solid #5e6f21;
 
     &_logo{
         display : flex;
@@ -15,10 +15,16 @@
             width : 4vw;
             height : auto;
             object-fit: contain;
+            @media screen and (max-width:990px) {
+                width : 10vw;
+            }
         }
 
         h1{
             color : #5e6f21;
+            @media screen and (max-width:990px) {
+                font-size : 7vw;
+            }
         }
     }
 
@@ -27,6 +33,9 @@
         font-weight : bold;
         color : #5e6f21;
         transition : .3s ease;
+        @media screen and (max-width:990px) {
+            font-size : 4vw;
+        }
 
         &:hover{
             color : #98ac3a;
