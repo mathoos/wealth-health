@@ -20,7 +20,7 @@ function EmployeeList() {
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortColumn, setSortColumn] = useState(null);
-    const [sortOrder, setSortOrder] = useState('asc');
+    const [sortOrder, setSortOrder] = useState(1);
 
 
     const filteredItems = employees.filter(item => {
@@ -34,10 +34,10 @@ function EmployeeList() {
 
     const handleSort = (column) => {
         if (sortColumn === column) {
-            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+            setSortOrder(sortOrder === 1 ? -1 : 1);
         } else {
             setSortColumn(column);
-            setSortOrder('asc');
+            setSortOrder(1);
         }
     };
 

@@ -1,6 +1,9 @@
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-
-    const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
+    
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
   
     return (
         <div className="employeeList_container-pagination">

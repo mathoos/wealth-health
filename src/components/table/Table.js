@@ -24,5 +24,3 @@ const Table = ({ columns, data, onSort  }) => {
 };
 
 export default Table;
-
-// check react table / select / datepicker

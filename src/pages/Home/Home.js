@@ -33,7 +33,7 @@ function Home() {
         department: 'Sales',
         street: '',
         city: '',
-        state: 'Alabama',
+        state: 'AL',
         zipCode: ''
     });
 
