@@ -1,10 +1,12 @@
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, onSort  }) => {
     return (
         <table className="employeeList_container-table">
             <thead>
                 <tr>
                     {columns.map((column, index) => (
-                        <th key={index}>{column.label}</th>
+                        <th key={index} onClick={() => onSort(column.key)}>
+                        {column.label}
+                    </th>
                     ))}
                 </tr>
             </thead>
@@ -22,3 +24,5 @@ const Table = ({ columns, data }) => {
 };
 
 export default Table;
+
+// check react table / select / datepicker
