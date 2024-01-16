@@ -4,7 +4,12 @@ const Table = ({ columns, data, onSort  }) => {
             <thead>
                 <tr>
                     {columns.map((column, index) => (
-                        <th key={index} onClick={() => onSort(column.key)}>
+                        <th 
+                            key={index} 
+                            onClick={() => onSort(column.key)}
+                            scope="col"
+                            aria-sort={column.sortOrder}
+                        >
                         {column.label}
                     </th>
                     ))}

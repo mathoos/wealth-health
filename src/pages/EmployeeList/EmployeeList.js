@@ -62,6 +62,9 @@ function EmployeeList() {
     const sortedItems = sortData(filteredItems, sortColumn, sortOrder);
     const currentItems = sortedItems.slice(indexOfFirstItem, indexOfLastItem);
 
+    const firstItemIndex = indexOfFirstItem + 1;
+    const lastItemIndex = Math.min(indexOfLastItem, employees.length);
+
 
     const columns = [
         { key: 'firstName', label: 'First Name' },
@@ -86,12 +89,18 @@ function EmployeeList() {
             </Navbar>
             <div className="employeeList_container">
                 <h2>Current Employees</h2>
-                <div className="employeeList_container-filter">
+                <div className="employeeList_container-content">
                     <PageSizeSelector onPageSizeChange={handlePageSizeChange} />
                     <Filter searchTerm={searchTerm} onSearchChange={handleSearchChange} />
                 </div>    
-                <Table columns={columns} data={currentItems} onSort={handleSort}/> 
-                <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                <Table columns={columns} data={currentItems} onSort={handleSort}/>
+                <div className="employeeList_container-content">
+                    <div>
+                        Showing {firstItemIndex} to {lastItemIndex} of {employees.length} entries
+                    </div>
+                    <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                </div> 
+                
             </div>   
         </div>
     );

@@ -5,10 +5,10 @@ const PageSizeSelector = ({ onPageSizeChange }) => {
   
     return (
         <div>
-            <span>Show </span>
+           <label htmlFor="pageSize">Show </label>
             {/* Lorsqu'une option est sélectionnée, on appelle la fonction onPageSizeChange
              avec la nouvelle valeur convertie en entier avec parseInt. */}
-            <select onChange={(e) => onPageSizeChange(parseInt(e.target.value, 10))}>  
+            <select  id="pageSize" onChange={(e) => onPageSizeChange(parseInt(e.target.value, 10))}>  
             {/* La boucle map qui itère sur le tableau pageSizes pour créer une option pour chaque taille de page*/}
             {pageSizes.map((size) => (
                 <option key={size} value={size}>
