@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
-
 import { useDispatch } from 'react-redux';
-import { addEmployee } from '../../utilities/Slice.js';
 
+import { addEmployee } from '../../utilities/Slice.js';
+import states from '../../Data/States.js';
+import departments from '../../Data/Departments.js';
 import Navbar from "../../components/navbar/Navbar.js";
 import Select from "../../components/select/Select.js";
 import DatePicker from "../../components/datePicker/DatePicker.js";
@@ -11,10 +12,6 @@ import Lien from "../../components/Lien.js";
 
 import Modal from 'wealth-health-modal-lib/dist/index.js';
 import 'wealth-health-modal-lib/dist/index.css';
-
-import states from '../../Data/States.js';
-import departments from '../../Data/Departments.js';
-
 
 import './home.scss'; 
 

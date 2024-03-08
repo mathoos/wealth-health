@@ -13,7 +13,7 @@ import './employeeList.scss';
 
 function EmployeeList() {
 
-    // Utilisation du hook useSelector pour extraire les données d'employés du Redux store :
+    // Utilisation du hook useSelector pour extraire les données des employés du Redux store :
     const employees = useSelector((state) => state.employees);
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -29,13 +29,34 @@ function EmployeeList() {
         );
     });
 
-    
     const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+    const sortedItems = sortData(filteredItems, sortColumn, sortOrder);
+    const currentItems = sortedItems.slice(indexOfFirstItem, indexOfLastItem);
+
+    const firstItemIndex = indexOfFirstItem + 1;
+    const lastItemIndex = Math.min(indexOfLastItem, employees.length);
+
+    const columns = [
+        { key: 'firstName', label: 'First Name' },
+        { key: 'lastName', label: 'Last Name' },
+        { key: 'startDate', label: 'Start Date' },
+        { key: 'department', label: 'Department' },
+        { key: 'dateOfBirth', label: 'Date of Birth' },
+        { key: 'street', label: 'Street' },
+        { key: 'city', label: 'City' },
+        { key: 'state', label: 'State' },
+        { key: 'zipCode', label: 'Zip Code' },
+    ];
 
     const handleSort = (column) => {
         if (sortColumn === column) {
             setSortOrder(sortOrder === 1 ? -1 : 1);
-        } else {
+        } 
+        else {
             setSortColumn(column);
             setSortOrder(1);
         }
@@ -54,29 +75,6 @@ function EmployeeList() {
         setItemsPerPage(pageSize);
         setCurrentPage(1);
     };
-
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-
-    const sortedItems = sortData(filteredItems, sortColumn, sortOrder);
-    const currentItems = sortedItems.slice(indexOfFirstItem, indexOfLastItem);
-
-    const firstItemIndex = indexOfFirstItem + 1;
-    const lastItemIndex = Math.min(indexOfLastItem, employees.length);
-
-
-    const columns = [
-        { key: 'firstName', label: 'First Name' },
-        { key: 'lastName', label: 'Last Name' },
-        { key: 'startDate', label: 'Start Date' },
-        { key: 'department', label: 'Department' },
-        { key: 'dateOfBirth', label: 'Date of Birth' },
-        { key: 'street', label: 'Street' },
-        { key: 'city', label: 'City' },
-        { key: 'state', label: 'State' },
-        { key: 'zipCode', label: 'Zip Code' },
-    ];
    
     return (
         <div className="employeeList">
@@ -99,8 +97,7 @@ function EmployeeList() {
                         Showing {firstItemIndex} to {lastItemIndex} of {employees.length} entries
                     </div>
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-                </div> 
-                
+                </div>               
             </div>   
         </div>
     );

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 // On créé un slice du store qui contient le reducer et les actions associées
-const employeeSlice = createSlice({
-    name: 'employees', // Nom du slice pour générer automatiquement le nom de l'action et du reducer
+const employee = createSlice({
+    name: 'employee', // Nom du slice pour générer automatiquement le nom de l'action et du reducer
     initialState: [], // État initial du slice ->  un tableau vide ([])
     reducers: {
         addEmployee: (state, action) => {
@@ -11,5 +11,5 @@ const employeeSlice = createSlice({
     },
 });
 
-export const { addEmployee } = employeeSlice.actions;
-export default employeeSlice.reducer;
+export const { addEmployee } = employee.actions;
+export default employee.reducer;

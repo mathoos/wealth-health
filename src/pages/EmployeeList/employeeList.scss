@@ -47,6 +47,28 @@
             tr{
                 padding : 1vw;
             }
+
+            th{
+                display : flex;
+                align-items: center;
+                justify-content: center;
+                gap : .5vw;
+            }
+
+            .arrow-icon{
+                font-size : .8vw;
+                transition : .5s ease;      
+
+                &.rotate-up {
+                    transform: rotate(0deg);
+                   
+                }
+                  
+                &.rotate-down {
+                    transform: rotate(180deg);
+                    
+                }
+            }
         }
 
         &-pagination {
