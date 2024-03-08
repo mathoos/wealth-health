@@ -1,0 +1,20 @@
+@import "../../style.scss";
+
+.pagination {
+    display : flex;
+    gap : 1vw;
+    align-self : flex-end;
+  
+    button {
+        cursor : pointer;
+        border : none;
+        padding : 1vw;
+        border-radius : 2px;
+        background-color: transparent;
+
+        &.current-page {
+            background-color: $gris-pale;
+            border : 1px solid $gris;
+        }
+    }
+}

@@ -147,7 +147,7 @@ function Home() {
                             customClass="select"
                         />
                     </fieldset>
-                    <button type="submit">Save</button>
+                    <button className="bouton" type="submit">Save</button>
                 </form>
             </div>         
             <Modal

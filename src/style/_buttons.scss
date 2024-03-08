@@ -1,0 +1,18 @@
+.bouton{
+    background-color: transparent;
+    border : 1px solid $kaki;
+    padding : 2vh  5vw;
+    font-weight : bold;
+    color : $kaki;
+    transition : .3s ease;
+    cursor : pointer;
+
+    &:hover{
+        background-color: $kaki;
+        color : $blanc;
+    }
+
+    @media screen and (max-width:990px) {
+        padding : 2vh 10vw;
+    }
+}

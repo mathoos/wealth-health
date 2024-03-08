@@ -1,0 +1,60 @@
+@import "../../style.scss";
+
+.table{
+    width : 100%;
+    border : 1px solid $gris; 
+    
+    tbody{
+        tr{
+            border-bottom : 1px solid $gris;
+            &:nth-child(odd){
+                background-color: $gris-pale;
+            }
+            &:first-child{
+                border-top : 1px solid $gris;
+            }
+            &:last-child{
+                border-bottom : none;
+            }
+        }
+    }
+    
+    tr{
+        display : flex;
+    }
+    
+    th, td{
+        width : 100%;
+        text-align : center;
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding : 0 .5vw;
+    }
+
+    tr{
+        padding : 1vw;
+    }
+
+    th{
+        display : flex;
+        align-items: center;
+        justify-content: center;
+        gap : .5vw;
+    }
+
+    .arrow-icon{
+        font-size : .8vw;
+        transition : .5s ease;      
+
+        &.rotate-up {
+            transform: rotate(0deg);
+           
+        }
+          
+        &.rotate-down {
+            transform: rotate(180deg);
+            
+        }
+    }
+}

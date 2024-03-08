@@ -1,3 +1,5 @@
+@import "../../style.scss";
+
 .home{
     width : 100%;
     min-height : 100vh;
@@ -30,17 +32,14 @@
                 gap : 1vh;
                 width : 100%;
 
-                label{
-                }
-
                 input{    
                     width : 100%;             
                     height : 5vh;
                     padding : 0 5px;
-                    border : 1px solid grey;
+                    border : 1px solid $gris;
 
                     &:focus{
-                        outline : 2px solid #5e6f21;
+                        outline : 2px solid $kaki;
                     }
                 }
 
@@ -48,7 +47,7 @@
                     width : 100%;
                     height : 5vh;
                     padding : 0 5px;  
-                    border : 1px solid grey;               
+                    border : 1px solid $gris;              
                 }
             }
 
@@ -57,7 +56,7 @@
                 flex-direction: column;
                 gap : 2.5vh;
                 width : 100%;
-                border : 1px solid #5e6f21;
+                border : 1px solid $kaki;
                 padding : 1vw;
 
                 @media screen and (max-width:990px) {
@@ -69,25 +68,6 @@
                     @media screen and (max-width:990px) {
                         display : none;
                     }
-                }
-            }
-
-            button{
-                background-color: transparent;
-                border : 1px solid #5e6f21;
-                padding : 2vh  5vw;
-                font-weight : bold;
-                color : #5e6f21;
-                transition : .3s ease;
-                cursor : pointer;
-
-                @media screen and (max-width:990px) {
-                    padding : 2vh 10vw;
-                }
-
-                &:hover{
-                    background-color: #5e6f21;
-                    color : white;
                 }
             }
         }

@@ -1,3 +1,5 @@
+import './Pagination.scss'; 
+
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     
     const pageNumbers = [];
@@ -6,7 +8,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     }
   
     return (
-        <div className="employeeList_container-pagination">
+        <div className="pagination">
             <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
                 Précédent
             </button>

@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import EmployeeList from './pages/EmployeeList/EmployeeList';
 
-import './index.css'
-
 function App() {
     
     return (

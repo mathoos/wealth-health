@@ -1,0 +1,33 @@
+p, a, button, label, input, textarea, th, td{
+    font-size: 1.1vw;
+    font-weight: normal;
+    line-height : 1;
+    text-align : left;
+    color : $noir; 
+}
+
+a{
+    text-decoration: none;
+}
+
+input, button, fieldset, textarea{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+h1{
+    font-family : 3vw;
+    font-weight : bold;
+    color : $kaki;
+    @media screen and (max-width:990px) {
+        font-size : 7vw;
+    }
+}
+
+h2{
+    font-family : 2.5vw;
+    font-weight : bold;
+    text-align : center;
+}
+
